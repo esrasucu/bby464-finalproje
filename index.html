@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bellek Kurumları Semantik Arama Motoru</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="top-nav">
+        <div class="logo" onclick="location.reload()">🏛️ Semantik Katalog <span class="logo-tag">MİMARİ V4</span></div>
+        <div style="font-size: 13px; color: #cbd5e1; font-weight: 600;">BBY464 Semantik Bilgi Yönetimi Final Projesi</div>
+    </div>
+
+    <div id="homePage">
+        <div class="engine-title">Semantik Keşif Motoru</div>
+        <div class="engine-subtitle">Geleneksel anahtar kelime ve katı Boole (AND/OR) mantığının ötesine geçin. Çok boyutlu vektör uzayında entegre bellek kurumu koleksiyonlarını keşfedin.</div>
+        
+        <div class="big-search-box">
+            <input type="text" id="mainSearchInput" placeholder="Örn: Osmanlı arşivlerinde ceza kanunları ile ilgili neler var?" onkeypress="handleEnter(event)">
+            <button onclick="executeSearch('mainSearchInput')">Araştır</button>
+        </div>
+
+        <div class="scenarios-container">
+            <div style="font-size:12px; color:var(--text-muted); margin-bottom:15px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">Rapor Doğrulama Senaryoları (Canlı Test)</div>
+            <button class="scenario-btn" onclick="quickSearch('Kalp krizinde acil müdahale süreçleri nelerdir?')">Senaryo 1: Kalp Krizi Müdahalesi [Tıp]</button>
+            <button class="scenario-btn" onclick="quickSearch('Osmanlı ceza kanunları ve arşiv lügatleri nerede bulunur?')">Senaryo 2: Osmanlı Ceza Hukuku [Arşiv]</button>
+            <button class="scenario-btn" onclick="quickSearch('Büyük dil modelleri ile semantik arama nasıl yapılır?')">Senaryo 3: Yapay Zeka Keşfi [Bilişim]</button>
+        </div>
+    </div>
+
+    <div id="resultsPage">
+        
+        <div class="results-top-bar">
+            <div class="small-search">
+                <input type="text" id="topSearchInput" onkeypress="handleEnterTop(event)">
+                <button onclick="executeSearch('topSearchInput')">Araştır</button>
+            </div>
+        </div>
+
+        <div class="layout-grid">
+            
+            <div class="left-col">
+                <div class="pipeline-card">
+                    <h3>⚙️ İşlem Akışı (Mimari)</h3>
+                    
+                    <div class="step" id="step1">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <h4>Geniş Erişim (Gevşek Eşleştirme)</h4>
+                            <p>Doğal dil sorgusu Boole dizesine dönüştürülmez. Katı AND kısıtları devre dışıdır; kavramsal örtüşmeler aday listeye dahil edilir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step" id="step2">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <h4>Semantik Yeniden Sıralama</h4>
+                            <p>Aday kayıtlar, yüksek boyutlu vektör uzayında kosinüs yakınlıklarına göre yeniden sıralanır. Kelime sıklığı (BM25) değil anlam esastır.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step" id="step3">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <h4>LLM Destekli Zenginleştirme</h4>
+                            <p>Kullanıcı niyeti çözümlenir, konuşma tabanlı açıklama üretilir ve keşif (exploration) mekanizması tetiklenir.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-col">
+                
+                <div class="ai-assistant" id="aiAssistantBox" style="display: none;">
+                    <div class="ai-header"> 🤖 Katman 3: Konuşma Tabanlı Araştırma Asistanı</div>
+                    <div class="ai-body">
+                        <div id="aiText"></div>
+                        
+                        <div class="exploration-tags">
+                            <strong>🔍 Keşif Sürecini Genişletin (Ontolojik Öneriler):</strong>
+                            <div id="exploreTagsArea"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="academic-validation" id="validationBox" style="display: none;">
+                    <p><strong>💡 Rapor Doğrulaması:</strong> Sonuçlar semantik yakınlığa göre sıralanmış olarak gelmekte; listenin en üstündeki kayıt gerçekten <u>en ilgili kayıt</u> olmaktadır.</p>
+                </div>
+
+                <div id="resultsList"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Semantik Bilgi Yönetimi Final Projesi Prototipi.
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
